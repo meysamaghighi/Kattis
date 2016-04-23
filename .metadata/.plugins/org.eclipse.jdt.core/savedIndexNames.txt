@@ -1,2 +1,0 @@
-INDEX VERSION 1.127+/home/meyag26/Downloads/AAPS/Kattis/.metadata/.plugins/org.eclipse.jdt.core
-3956731420.index
