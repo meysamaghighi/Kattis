@@ -1,0 +1,1 @@
+test.d: ../test.cpp
