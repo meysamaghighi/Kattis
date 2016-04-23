@@ -1,0 +1,49 @@
+// Meysam Aghighi
+
+#include <cstdio>
+#include <algorithm>
+#include <iostream>
+using namespace std;
+
+int T,kk,n,res,j;
+int x[100],y[100];
+int mnx[100],mny[100],mxx[100],mxy[100];
+
+void Rec(int i, int k, int sz){
+    if (k<=kk && sz<=res)
+    {
+        if (i==n)
+        {
+            res=min(res,sz);
+        }
+        else
+        {
+            for (int j=0; j<=k; ++j)
+            {
+                int omnx=mnx[j],omny=mny[j],omxx=mxx[j],omxy=mxy[j];
+                mnx[j]=min(mnx[j],x[i]);
+                mny[j]=min(mny[j],y[i]);
+                mxx[j]=max(mxx[j],x[i]);
+                mxy[j]=max(mxy[j],y[i]);
+                Rec(i+1,max(k,j+1),max(sz,max(mxx[j]-mnx[j],mxy[j]-mny[j])));
+                mnx[j]=omnx,mny[j]=omny,mxx[j]=omxx,mxy[j]=omxy;
+            }
+        }
+    }
+}
+
+int main(){
+    cin >> T;
+    for (int ii=0; ii<T; ++ii){
+        cin >> n >> kk;
+        for (int i=0; i<n; ++i)
+            cin >> x[i] >> y[i];
+        for (int i=0; i<100; ++i)
+            mnx[i] = mny[i] = 1000000,
+            mxx[i] = mxy[i] = -1000000;
+        res=1000000;
+        Rec(0,0,0);
+        printf("Case #%d: %d\n",ii+1,res);
+    }
+    return 0;
+}

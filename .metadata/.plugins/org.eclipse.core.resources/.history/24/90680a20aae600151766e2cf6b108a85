@@ -1,0 +1,38 @@
+import java.math.BigInteger;
+import java.util.Scanner;
+
+public int mod_inv(int a, int b){ // we must have gcd(a,b)=1, otherwise error!
+    int bb = b, temp, q;
+    int x0 = 0, x1 = 1;
+    if (b == 1) return 1;
+    while (a > 1) {
+        q = a / b;
+        temp = b; b = a % b; a = temp;
+        temp = x0; x0 = x1 - q * x0; x1 = temp;
+    }
+    if (x1 < 0) x1 += bb;
+    return x1;
+}
+
+public class j {
+	public static void main(String[] args) {
+		int T;
+		int a,m,b,n;
+		Scanner in = new Scanner(System.in);
+		T = in.nextInt();
+		while (T>0){
+			T--;
+			a = in.nextInt();
+			n = in.nextInt();
+			b = in.nextInt();
+			m = in.nextInt();
+//			cin >> a >> n >> b >> m;
+			BigInteger K = n*m;
+			BigInteger x = (a*m*mod_inv(m,n))%K;
+			x += (b*n*mod_inv(n,m))%K;
+			System.out.println(x + " " + K);
+//			cout << x << " " << K << endl;
+		}		
+		
+	}
+}

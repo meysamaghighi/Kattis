@@ -1,0 +1,25 @@
+// Mega Noobs
+#include <iostream>
+using namespace std;
+
+int sum(int n){
+	return n*(n+1)/2;
+}
+
+int solve(int A, int B, int k){
+	if (k == 1) return sum(B)-sum(A-1);
+	if (A == B) return B;
+	if (A+1 == B) return A+B;
+	int mid = (A + B)/2;
+	return max(solve(A,mid-1,k-1) , solve(mid+1,B,k))+mid;
+}
+
+int main(){
+	int N,k,m;
+	cin >> N;
+	while (N--){
+		cin >> k >> m;
+		cout << solve(1,m,k) << endl;
+	}
+	return 0;
+}

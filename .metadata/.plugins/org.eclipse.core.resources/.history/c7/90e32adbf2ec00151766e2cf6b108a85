@@ -1,0 +1,59 @@
+// Mega Noobs
+#include <iostream>
+#include <vector>
+#include <cstdio>
+#include <cstring>
+using namespace std;
+
+int main(){
+	cout << "kir!||" << endl;
+	int c,n;
+	cin >> c >> n;
+	int b[n];
+	for (int i=0;i<n;i++) cin >> b[i];
+	cerr << "are we good?" << endl;
+	// Knapsack part
+    int sol[510][5010];
+    bool mark[510][5010];
+    cerr << "are we good?" << endl;
+	memset(mark,false,sizeof(mark));
+
+	for (int j=0;j<=c;j++)
+		sol[0][j] = 0;
+	cerr << "are we good?" << endl;
+	for (int i=1;i<=n;i++)
+		for (int j=0;j<=c;j++){
+			if (b[i-1] <= j && sol[i-1][j] < sol[i-1][j-b[i-1]] + 1){
+				sol[i][j] = sol[i-1][j-b[i-1]] + 1;
+				mark[i][j] = true;
+			}
+			else
+				sol[i][j] = sol[i-1][j];
+		}
+	cerr << "are we good?" << endl;
+	vector<int> belong(n,2);
+	int ii=n , jj=c;
+	while(ii && jj){
+		if (mark[ii][jj]){
+			belong[ii-1] = 1;
+			jj -= b[ii-1];
+		}
+		ii--;
+	}
+	cerr << "are we good?" << endl;
+	int one = 0, two = 0;
+	for (int i=0;i<n;i++){
+		if (belong[i] == 1){ // one
+			cout << one;
+			one += b[i];
+		}
+		else { // two
+			cout << two;
+			two += b[i];
+		}
+		if (i < n-1) cout << " ";
+		else cout << endl;
+	}
+
+	return 0;
+}

@@ -1,0 +1,40 @@
+import java.math.BigInteger;
+import java.util.Scanner;
+
+
+public class j {
+	public static void main(String[] args) {
+		int T;
+		BigInteger a,m,b,n;
+		Scanner in = new Scanner(System.in);
+		T = in.nextInt();
+		while (T>0){
+			T--;
+			a = in.nextBigInteger();
+			n = in.nextBigInteger();
+			b = in.nextBigInteger();
+			m = in.nextBigInteger();
+//			cin >> a >> n >> b >> m;
+			BigInteger K = n.multiply(m);
+			BigInteger x = (a.multiply(m).multiply(mod_inv(m,n))).mod(K);
+			x += (b.multiply(n).multiply(mod_inv(n,m))).mod(K);
+			System.out.println(x + " " + K);
+//			cout << x << " " << K << endl;
+		}		
+		
+	}
+
+	private static BigInteger mod_inv(BigInteger m, BigInteger n) {
+	    BigInteger bb = n, temp, q;
+	    BigInteger x0 = BigInteger.ZERO;
+	    BigInteger x1 = BigInteger.ONE;
+	    if (n.equals(1)) return BigInteger.ONE;
+	    while (m.compareTo(BigInteger.ONE) > 0) { // m > 1
+	        q = m / n;
+	        temp = n; n = m % n; m = temp;
+	        temp = x0; x0 = x1 - q * x0; x1 = temp;
+	    }
+	    if (x1 < 0) x1 += bb;
+	    return x1;
+	}
+}

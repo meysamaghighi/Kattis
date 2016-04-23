@@ -1,0 +1,132 @@
+14:08:31 **** Incremental Build of configuration Debug for project Test ****
+make all 
+Building file: ../test.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"test.d" -MT"test.d" -o "test.o" "../test.cpp"
+Finished building: ../test.cpp
+ 
+Building target: Test
+Invoking: GCC C++ Linker
+g++  -o "Test"  ./test.o   
+Finished building target: Test
+ 
+14:08:46 **** Incremental Build of configuration Debug for project Test ****
+make all 
+make: Nothing to be done for `all'.
+15:42:04 **** Incremental Build of configuration Debug for project Test ****
+make all 
+Building file: ../test.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"test.d" -MT"test.d" -o "test.o" "../test.cpp"
+Finished building: ../test.cpp
+ 
+Building target: Test
+Invoking: GCC C++ Linker
+g++  -o "Test"  ./test.o   
+Finished building target: Test
+ 
+15:51:52 **** Incremental Build of configuration Debug for project Test ****
+make all 
+Building file: ../test.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"test.d" -MT"test.d" -o "test.o" "../test.cpp"
+Finished building: ../test.cpp
+ 
+Building target: Test
+Invoking: GCC C++ Linker
+g++  -o "Test"  ./test.o   
+Finished building target: Test
+ 
+16:02:39 **** Incremental Build of configuration Debug for project Test ****
+make all 
+Building file: ../test.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"test.d" -MT"test.d" -o "test.o" "../test.cpp"
+Finished building: ../test.cpp
+ 
+Building target: Test
+Invoking: GCC C++ Linker
+g++  -o "Test"  ./test.o   
+Finished building target: Test
+ 
+16:03:52 **** Incremental Build of configuration Debug for project Test ****
+make all 
+Building file: ../test.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"test.d" -MT"test.d" -o "test.o" "../test.cpp"
+Finished building: ../test.cpp
+ 
+Building target: Test
+Invoking: GCC C++ Linker
+g++  -o "Test"  ./test.o   
+Finished building target: Test
+ 
+11:11:01 **** Incremental Build of configuration Debug for project Test ****
+make all 
+Building file: ../test.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"test.d" -MT"test.d" -o "test.o" "../test.cpp"
+Finished building: ../test.cpp
+ 
+Building target: Test
+Invoking: GCC C++ Linker
+g++  -o "Test"  ./test.o   
+Finished building target: Test
+ 
+11:11:18 **** Incremental Build of configuration Debug for project Test ****
+make all 
+make: Nothing to be done for `all'.
+11:11:41 **** Incremental Build of configuration Debug for project Test ****
+make all 
+make: Nothing to be done for `all'.
+11:12:19 **** Incremental Build of configuration Debug for project Test ****
+make all 
+make: Nothing to be done for `all'.
+11:12:51 **** Incremental Build of configuration Debug for project Test ****
+make all 
+make: Nothing to be done for `all'.
+11:13:08 **** Incremental Build of configuration Debug for project Test ****
+make all 
+make: Nothing to be done for `all'.
+11:13:43 **** Incremental Build of configuration Debug for project Test ****
+make all 
+make: Nothing to be done for `all'.
+11:16:26 **** Incremental Build of configuration Debug for project Test ****
+make all 
+make: Nothing to be done for `all'.
+11:16:29 **** Incremental Build of configuration Debug for project Test ****
+make all 
+make: Nothing to be done for `all'.
+11:16:41 **** Incremental Build of configuration Debug for project Test ****
+make all 
+make: Nothing to be done for `all'.
+14:02:47 **** Build of configuration Debug for project Test ****
+make all 
+Building file: ../test.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"test.d" -MT"test.d" -o "test.o" "../test.cpp"
+Finished building: ../test.cpp
+ 
+Building target: Test
+Invoking: GCC C++ Linker
+g++  -o "Test"  ./test.o   
+Finished building target: Test
+ 
+19:17:15 **** Incremental Build of configuration Debug for project Test ****
+make all 
+Building file: ../test.cpp
+Invoking: GCC C++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"test.d" -MT"test.d" -o "test.o" "../test.cpp"
+Finished building: ../test.cpp
+ 
+Building target: Test
+Invoking: GCC C++ Linker
+g++  -o "Test"  ./test.o   
+Finished building target: Test
+ 
+19:18:45 **** Incremental Build of configuration Debug for project Test ****
+make all 
+make: Nothing to be done for `all'.
+19:19:17 **** Incremental Build of configuration Debug for project Test ****
+make all 
+make: Nothing to be done for `all'.

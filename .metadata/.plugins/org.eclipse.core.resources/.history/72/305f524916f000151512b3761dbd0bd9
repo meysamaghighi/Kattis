@@ -1,0 +1,17 @@
+import java.util.Scanner;
+
+
+public class j {
+
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		int q,n;
+		q = in.nextInt();
+		while (q > 0){
+			q--;
+			n = in.nextInt();
+			
+		}
+		
+	}
+}

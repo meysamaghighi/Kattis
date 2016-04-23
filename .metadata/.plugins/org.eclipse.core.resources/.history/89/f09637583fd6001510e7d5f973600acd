@@ -1,0 +1,71 @@
+// Meysam Aghighi
+
+#include <iostream>
+#include <vector>
+#include <queue>
+using namespace std;
+
+const int INF = 20000000;
+
+struct edge{
+	int to, weight;
+	edge(_to,_weight){
+		to = _to;
+		weight = _weight;
+	}
+	bool operator < (edge e) const {
+		return weight < e.weight;
+	}
+};
+
+int main(){
+	int n,m,q,s,u,v,w;
+	while (cin>>n>>m>>q>>s && n){
+		vector <edge> adjlist[n];
+		for (int i=0;i<m;i++) cin >> u >> v >> w, adjlist[u].push_back(edge(v,w));
+		// Dijkstra's Algorithm
+		int dist[n];
+		bool marked[n];
+		memset(marked, false, sizeof(marked));
+		for (int i=0;i<n;i++) dist[i] = INF;
+		dist[s] = 0, marked[s] = true;
+		priority_queue <edge> meysam;
+		meysam.push(edge(s,0));
+		while (!meysam.empty()){
+			edge e = meysam.top();
+			meysam.pop();
+			v = e.to, w = e.weight;
+			if (marked[v]) continue;
+			marked[v] = true;
+			for (int i=0;i<adjlist[v].size();i++){
+				if (!marked[adjlist[v][i].to] && adjlist[v][i].weight + w < dist[adjlist[v][i].to]){
+
+				}
+			}
+		}
+		for (int i=0;i<q;i++){
+			cin >> u;
+			if (dist[u] == INF) cout << "Impossible" << endl;
+			else cout << dist[u] << endl;
+		}
+		cout << endl;
+	}
+	return 0;
+}
+
+
+//		// BFS(s) - which is wrong -> u should use dijkstra for weighted graph!
+//		bool marked[n]; memset(marked,false,sizeof(marked));
+//		queue <int> meysam;
+//		marked[s] = true, meysam.push(s);
+//		while (!meysam.empty()){
+//			int x = meysam.front();
+//			meysam.pop();
+//			for (int i=0;i<adjlist[x].size();i++){
+//				int y = adjlist[x][i].first;
+//				if (!marked[y]){
+//					marked[y] = true;
+//					meysam.push(y);
+//				}
+//			}
+//		}

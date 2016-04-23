@@ -1,0 +1,23 @@
+// Meysam Aghighi
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+struct edge{
+	int to, w;
+	edge(int _to, int _w): to(_to), w(_w){} // member initialization
+};
+
+int main(){
+	int n,m,s,t;
+	cin >> n >> m >> s >> t;
+	vector<edge> g[n];
+	for (int i=0;i<m;i++){
+		cin >> u >> v >> w;
+		g[u].push_back(edge(v,w));
+	}
+
+
+	return 0;
+}

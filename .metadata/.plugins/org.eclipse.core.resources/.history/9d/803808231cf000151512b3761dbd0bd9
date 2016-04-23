@@ -1,0 +1,33 @@
+import java.math.BigInteger;
+import java.util.Scanner;
+
+
+public class j {
+
+	public static BigInteger[] cat;
+	
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		int q,n;
+		q = in.nextInt();
+		while (q > 0){
+			q--;
+			n = in.nextInt();
+//			BigInteger nom = new BigInteger(n+2+"");
+//			BigInteger den = BigInteger.ONE;
+//			BigInteger ans = BigInteger.ONE;
+//			for (int i=0;i<n-1;i++ , den = den.add(BigInteger.ONE) , nom = nom.add(BigInteger.ONE)){
+//				ans = ans.multiply(nom).divide(den);				
+//			}
+//			ans = ans.divide(den);
+			System.out.println(catalan(n));
+		}
+		
+	}
+	
+	private static BigInteger catalan(int n){
+		if (cat[n] != null) return cat[n];
+		BigInteger c = BigInteger.valueOf(4*n-2).multiply(catalan(n-2));
+		return cat[n] = c.divide(BigInteger.valueOf(n+1));		
+	}
+}

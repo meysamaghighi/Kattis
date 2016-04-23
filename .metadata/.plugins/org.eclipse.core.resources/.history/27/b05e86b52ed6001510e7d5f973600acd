@@ -1,0 +1,16 @@
+// Meysam Aghighi
+
+#include <iostream>
+using namespace std;
+
+int main(){
+	int t,n,m;
+	cin >> t;
+	while (t--){
+		cin >> n >> m;
+		for (int i=0;i<m;i++){ // make graph
+			cin >> u >> v;
+		}
+	}
+	return 0;
+}

@@ -1,0 +1,46 @@
+// Meysam Aghighi
+
+//#include <cstdio>
+#include <algorithm>
+#include <iostream>
+using namespace std;
+
+int T,k,n,best;
+int x[20],y[20];
+int minx[20],miny[20],maxx[20],maxy[20];
+
+void solve(int next, int marked, int cur){
+    if (marked<=k && cur<=best){
+        if (next == n){
+            best = min(best,cur);
+        }
+        else{
+            for (int j=0;j<marked+1;j++){
+                int ominx = minx[j],ominy = miny[j],omaxx = maxx[j],omaxy = maxy[j];
+                minx[j]=min(minx[j],x[next]);
+                miny[j]=min(miny[j],y[next]);
+                maxx[j]=max(maxx[j],x[next]);
+                maxy[j]=max(maxy[j],y[next]);
+                solve(next+1,max(marked,j+1),max(cur,max(maxx[j]-minx[j],maxy[j]-miny[j])));
+                minx[j]=ominx,miny[j]=ominy,maxx[j]=omaxx,maxy[j]=omaxy;
+            }
+        }
+    }
+}
+
+int main(){
+    cin >> T;
+    for (int ii=0; ii<T; ii++){
+        cin >> n >> k;
+        for (int i=0; i<n; i++)
+            cin >> x[i] >> y[i];
+        for (int i=0; i<20; i++)
+            minx[i] = miny[i] = 100000,
+            maxx[i] = maxy[i] = -1;
+        best = 100000;
+        solve(0,0,0);
+        cout << "Case #" << ii+1 << ": " << best << endl;
+//        printf("Case #%d: %d\n",ii+1,best);
+    }
+    return 0;
+}

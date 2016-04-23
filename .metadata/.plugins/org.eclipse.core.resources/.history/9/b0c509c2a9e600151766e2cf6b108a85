@@ -1,0 +1,24 @@
+import java.math.BigInteger;
+import java.util.Scanner;
+
+
+public class j {
+	public static void main(String[] args) {
+		int T;
+		int a,m,b,n;
+		Scanner in = new Scanner(System.in);
+		T = in.nextInt();
+		while (T>0){
+			T--;
+			a = in.nextInt() , n = in.nextInt() , b = in.nextInt() , m = in.nextInt();
+//			cin >> a >> n >> b >> m;
+			ll K = n*m;
+			ll x = (((a*m)%K)*mod_inv(m,n))%K;
+			x += (((b*n)%K)*mod_inv(n,m))%K;		
+			x %= K;
+			cout << x << " " << K << endl;
+		}
+		
+		System.out.println();
+	}
+}

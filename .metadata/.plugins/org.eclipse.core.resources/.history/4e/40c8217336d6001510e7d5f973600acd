@@ -1,0 +1,41 @@
+// Meysam Aghighi
+
+#include <iostream>
+#include <vector>
+#include <queue>
+using namespace std;
+
+const int INF = 20000000;
+
+int main(){
+	int n,m,q,s,u,v,w;
+	while (cin>>n>>m>>q>>s && n){
+		vector < pair<int,int> > adjlist[n];
+		for (int i=0;i<m;i++) cin >> u >> v >> w, adjlist[u].push_back(make_pair(v,w));
+		// BFS(s)
+		int dist[n];
+		bool marked[n];
+		queue <int> meysam;
+		for (int i=0;i<n;i++) dist[i] = INF, marked[i] = false;
+		dist[s] = 0, marked[s] = true, meysam.push(s);
+		while (!meysam.empty()){
+			int x = meysam.front();
+//			cout << x << endl;
+			meysam.pop();
+			for (int i=0;i<adjlist[x].size();i++){
+				int y = adjlist[x][i].first;
+				if (!marked[y]){
+					marked[y] = true;
+					dist[y] = min(dist[y] , dist[x] + adjlist[x][i].second);
+					meysam.push(y);
+				}
+			}
+		}
+		for (int i=0;i<q;i++){
+			cin >> u;
+			if (dist[u] == INF) cout << "Impossible" << endl;
+			else cout << dist[u] << endl;
+		}
+	}
+	return 0;
+}

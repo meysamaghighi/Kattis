@@ -1,0 +1,147 @@
+// Meysam Aghighi
+
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <climits>
+#include <cstring>
+using namespace std;
+
+struct edge{
+	int to, w, flow;
+	edge(int _to, int _w, int _flow): to(_to), w(_w), flow(_flow){} // member initialization
+};
+
+/* Returns true if there is a path from source 's' to sink 't' in
+  residual graph. Also fills parent[] to store the path */
+bool bfs(int **rGraph, int V, int s, int t, int parent[])
+{
+    // Create a visited array and mark all vertices as not visited
+    bool visited[V];
+    memset(visited, 0, sizeof(visited));
+
+    // Create a queue, enqueue source vertex and mark source vertex
+    // as visited
+    queue <int> q;
+    q.push(s);
+    visited[s] = true;
+    parent[s] = -1;
+
+    // Standard BFS Loop
+    while (!q.empty())
+    {
+        int u = q.front();
+        q.pop();
+
+        for (int v=0; v<V; v++)
+        {
+            if (visited[v]==false && rGraph[u][v] > 0)
+            {
+                q.push(v);
+                parent[v] = u;
+                visited[v] = true;
+            }
+        }
+    }
+
+    // If we reached sink in BFS starting from source, then return
+    // true, else false
+    return (visited[t] == true);
+}
+
+// Returns tne maximum flow from s to t in the given graph
+void fordFulkerson(int **graph, int V, int s, int t)
+{
+    int u, v;
+
+    // Create a residual graph and fill the residual graph with
+    // given capacities in the original graph as residual capacities
+    // in residual graph
+    int **rGraph; // Residual graph where rGraph[i][j] indicates
+                     // residual capacity of edge from i to j (if there
+                     // is an edge. If rGraph[i][j] is 0, then there is not)
+    rGraph = new int * [V];
+    for (u = 0; u < V; u++){
+    	rGraph[u] = new int[V];
+        for (v = 0; v < V; v++)
+             rGraph[u][v] = graph[u][v];
+    }
+    /// pring rGraph
+//    for (int i=0;i<V;i++){
+//    	for (int j=0;j<V;j++)
+//    		cout << graph[i][j] << "\t";
+//    	cout << endl;
+//    }
+
+    int parent[V];  // This array is filled by BFS and to store path
+
+    int max_flow = 0;  // There is no flow initially
+
+    // Augment the flow while tere is path from source to sink
+    while (bfs(rGraph, V, s, t, parent))
+    {
+        // Find minimum residual capacity of the edhes along the
+        // path filled by BFS. Or we can say find the maximum flow
+        // through the path found.
+        int path_flow = INT_MAX;
+        for (v=t; v!=s; v=parent[v])
+        {
+            u = parent[v];
+            path_flow = min(path_flow, rGraph[u][v]);
+        }
+
+        // update residual capacities of the edges and reverse edges
+        // along the path
+        for (v=t; v != s; v=parent[v])
+        {
+            u = parent[v];
+            rGraph[u][v] -= path_flow;
+            rGraph[v][u] += path_flow;
+        }
+
+        // Add path flow to overall flow
+        max_flow += path_flow;
+    }
+
+    int nodes = 0;
+    vector<edge> used_edges;
+    bool marked[V]; memset(marked,false,sizeof(marked));
+    /// pring rGraph
+    for (int i=0;i<V;i++){
+    	for (int j=0;j<V;j++){
+    		if (graph[i][j] > 0 && rGraph[i][j] < graph[i][j]){
+    			used_edges.push_back(edge(i,j,graph[i][j]-rGraph[i][j]));
+    			if(!marked[i]) marked[i] = true , nodes++;
+    			if(!marked[j]) marked[j] = true , nodes++;
+    		}
+    	}
+    }
+    if (nodes == 0) nodes = 2;
+    cout << nodes << " " << max_flow << " " << used_edges.size() << endl;
+    for (int i=0;i<used_edges.size();i++)
+    	cout << used_edges[i].to << " " << used_edges[i].w << " " << used_edges[i].flow << endl;
+
+    // Return the overall flow
+//    return max_flow;
+}
+
+int main(){
+	int n,m,s,t,u,v,w;
+	cin >> n >> m >> s >> t;
+//	vector<edge> g[n];
+	int **g; g = new int * [n];
+	for (int i=0;i<n;i++){
+		g[i] = new int[n];
+		for (int j=0;j<n;j++) g[i][j] = 0;
+	}
+	for (int i=0;i<m;i++){
+		cin >> u >> v >> w;
+//		g[u].push_back(edge(v,w,0));
+		g[u][v] = w;
+	}
+
+	fordFulkerson(g,n,s,t);
+
+
+	return 0;
+}

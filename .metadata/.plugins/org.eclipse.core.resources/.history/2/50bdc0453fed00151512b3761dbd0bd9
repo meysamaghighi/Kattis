@@ -1,0 +1,93 @@
+import java.lang.reflect.Array;
+import java.math.BigInteger;
+import java.util.Scanner;
+import java.util.Vector;
+
+
+public class j {
+	private static Scanner in;
+	private static Vector<BigInteger> nn;
+	private static Vector<BigInteger> mm;
+	
+	public static void main(String[] args) {
+		int T;
+		BigInteger a,m,b,n,d,l;
+		in = new Scanner(System.in);
+		T = in.nextInt();
+		while (T>0){
+			T--;
+			a = in.nextBigInteger();
+			n = in.nextBigInteger();
+			b = in.nextBigInteger();
+			m = in.nextBigInteger();
+			
+			d = n.gcd(m);
+			l = n.multiply(m).divide(d); // lcm
+						
+			if (a.mod(d).equals(b.mod(d)) == false){
+				System.out.println("no solution");
+			}
+			else { // prime factorization and ...
+				nn.clear();
+				mm.clear();
+				Vector<BigInteger> nn = primes(n);
+				Vector<BigInteger> mm = primes(m);
+				// create N and N_i
+				
+				BigInteger S = n.multiply(m); // S = mn				
+				Vector<BigInteger> N = null;
+				BigInteger temp;
+				for (int i=0 ;i<nn.size();i++){
+					N.set(i, S.divide(nn.get(i)));
+				}
+				Vector<BigInteger> M = null;
+				for (int i=0 ;i<mm.size();i++){
+					M.set(i, S.divide(mm.get(i)));
+				}
+				// set x
+				BigInteger x = BigInteger.ZERO;
+				for (int i=0;i<nn.size();i++){
+					x = x.add((a.multiply(N.get(i).multiply(mod_inv(N.get(i), nn.get(i))))).mod(l));
+				}
+				for (int i=0;i<mm.size();i++){
+					x = x.add((b.multiply(M.get(i).multiply(mod_inv(M.get(i), mm.get(i))))).mod(l));
+				}
+				x = x.mod(l);
+				
+//				BigInteger K = n.multiply(m);
+//				BigInteger x = (a.multiply(m).multiply(mod_inv(m,n))).mod(K);
+//				x = x.add((b.multiply(n).multiply(mod_inv(n,m)))).mod(K);
+				
+				System.out.println(x + " " + l);
+			}
+		}		
+		
+	}
+
+	private static Vector<BigInteger> primes(BigInteger n){
+		Vector<BigInteger> res = null;
+		for (BigInteger i = BigInteger.ONE.add(BigInteger.ONE) ; i.compareTo(n) < 0 ; i.add(BigInteger.ONE)){
+			BigInteger temp = BigInteger.ONE;
+			while (n.mod(i).equals(0)){
+				temp = temp.multiply(i);
+				n = n.divide(i);
+			}
+			res.add(temp);
+		}
+		return res;
+	}
+	
+	private static BigInteger mod_inv(BigInteger m, BigInteger n) {
+	    BigInteger bb = n, temp, q;
+	    BigInteger x0 = BigInteger.ZERO;
+	    BigInteger x1 = BigInteger.ONE;
+	    if (n.equals(1)) return BigInteger.ONE;
+	    while (m.compareTo(BigInteger.ONE) > 0) { // m > 1
+	        q = m.divide(n);
+	        temp = n; n = m.mod(n); m = temp;
+	        temp = x0; x0 = x1.add(q.multiply(x0).negate()); x1 = temp;
+	    }
+	    if (x1.compareTo(BigInteger.ZERO) < 0) x1 = x1.add(bb);
+	    return x1;
+	}
+}

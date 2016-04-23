@@ -1,0 +1,24 @@
+import java.math.BigInteger;
+import java.util.Scanner;
+
+
+public class j {
+
+	public static void main(String[] args) {
+		int q,n;
+		q = new Scanner(System.in).nextInt();
+		while (q > 0){
+			q--;
+			n = new Scanner(System.in).nextInt();
+			BigInteger nom = new BigInteger(n+2+"");
+			BigInteger den = BigInteger.ONE;
+			BigInteger ans = BigInteger.ONE;
+			for (int i=0;i<n-1;i++ , den = den.add(BigInteger.ONE) , nom = nom.add(BigInteger.ONE)){
+				ans = ans.multiply(nom).divide(den);				
+			}
+			ans = ans.divide(den);
+			System.out.println(ans);
+		}
+		
+	}
+}

@@ -1,0 +1,51 @@
+// Mega Noobs
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+struct guy {
+	int l;
+	int id;
+	guy(){}
+	guy(int _l, int _id): l(_l) , id(_id){}
+	bool operator < (guy g) const {
+		return l > g.l;
+	}
+
+};
+
+int main(){
+	int T,N;
+	cin >> T >> N;
+	guy a[N];
+	for (int i=0;i<N;i++){
+		cin >> a[i].l;
+		a[i].id = i;
+	}
+	sort(a,a+N);
+	if (N == 1){
+		cout << "0" << endl;
+		return 0;
+	}
+	else if (N == 2){
+		cout << "0 0" << endl;
+		return 0;
+	}
+	int one = a[0].l , two = a[1].l;
+	int sol[N];
+	sol[a[0].id] = sol[a[1].id] = 0;
+	for (int i=2;i<N;i++){
+		if (one < two){
+			sol[a[i].id] = one;
+			one += a[i].l;
+		}
+		else {
+			sol[a[i].id] = two;
+			two += a[i].l;
+		}
+	}
+	for (int i=0;i<N-1;i++)
+		cout << sol[i] << " ";
+	cout << sol[N-1] << endl;
+	return 0;
+}
