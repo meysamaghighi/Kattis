@@ -18,7 +18,7 @@ int solve (int c, int n5, int n10){
     if (n5>1) ans = min(ans, 2 + solve(c-1,n5-2,n10));
     if (n5 && n1>2) ans = min(ans, 4 + solve(c-1,n5-1,n10));
     if (n1>7) ans = min(ans, 8 + solve(c-1,n5,n10));
-    if (n10 && n1>2) ans = min(ans, 4 + solve(c-1,n5+1,n10-1)); // This case is fucking stupid! I got wrong answers here...
+    if (n10 && n1>2) ans = min(ans, 4 + solve(c-1,n5+1,n10-1)); // This case was not intuitive at all!
     return a[c][n5][n10] = ans;
 }
 
