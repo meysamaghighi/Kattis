@@ -4,13 +4,13 @@ using namespace std;
 
 #define h(i) (i==0?"+":i==1?"-":i==2?"*":"/")
 
-struct expp{
+struct expr{
     int i,j,k;
-    expp(){}
-    expp(int i,int j, int k): i(i), j(j), k(k){}
+    expr(){}
+    expr(int i,int j, int k): i(i), j(j), k(k){}
 };
 
-int eq(int sign, int n, int *o){ // complete this part
+int eq(int sign, int n, int *o){
     if (n == 1) return sign * 4;
     int s = sign * 4;
     for (int i=0;i<n-1;i++){
@@ -22,7 +22,7 @@ int eq(int sign, int n, int *o){ // complete this part
     return s;
 }
 
-map <int,expp> memo;
+map <int,expr> memo;
 
 void init(){
     int * o; o = new int[3];
@@ -30,7 +30,7 @@ void init(){
         for (int j=0;j<4;j++){
             for (int k=0;k<4;k++){
                 o[0] = i; o[1] = j; o[2] = k;
-                memo[eq(1,4,o)] = expp(i,j,k);
+                memo[eq(1,4,o)] = expr(i,j,k);
             }
         }
     }
