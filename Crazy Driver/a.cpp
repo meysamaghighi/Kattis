@@ -1,6 +1,6 @@
 //Meysam Aghighi
-// The idea is that the crazy driver tries to wastes in the best place (closest pair of gates)
-// when he knows that he will need to waste time anyway.
+// The idea is that the crazy driver tries to waste time in the best possible
+// place (closest pair of gates) when he knows that he will need to waste time anyway.
 #include<bits/stdc++.h>
 using namespace std;
 
